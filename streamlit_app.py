@@ -71,15 +71,4 @@ def vivabot(greetings_inputs, greetings_outputs, tf_idf, vectorizer, database):
             closest_sentence = get_closest_sentence(user_input, tf_idf, vectorizer, database)
             print(closest_sentence)
 
-
-## Conditional display of AI generated responses as a function of user provided prompts
-with response_container:
-    if user_input:
-        response = generate_response(user_input)
-        st.session_state.past.append(user_input)
-        st.session_state.generated.append(response)
-        
-    if st.session_state['generated']:
-        for i in range(len(st.session_state['generated'])):
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-            message(st.session_state["generated"][i], key=str(i))
+vivabot(greetings_inputs, greetings_outputs, tf_idf, vectorizer, chatbot_db)
