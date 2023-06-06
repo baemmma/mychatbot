@@ -1,21 +1,3 @@
-import pandas as pd
-import numpy as np
-import string
-import random
-
-
-import nltk
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.tokenize import sent_tokenize
-from nltk.stem import WordNetLemmatizer
-
-from sklearn.feature_extraction.text import TfidfVectorizer
-from nltk.tokenize import sent_tokenize
-
-import warnings
-warnings.filterwarnings("ignore", category=UserWarning)
-
 import streamlit as st
 from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
