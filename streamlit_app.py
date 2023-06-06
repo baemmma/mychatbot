@@ -55,8 +55,9 @@ response_container = st.container()
 
 with open("chatbot_database.txt", "r") as file:
     chatbot_db = file.read()
-sentences = nltk.sent_tokenize(chatbot_db)    
-sentences = nltk.sent_tokenize(chatbot_db) 
+   
+sentences = nltk.sent_tokenize(chatbot_db)
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer()
 
@@ -70,7 +71,7 @@ greetings_inputs = ['Hello', 'Hey', 'Hi', 'Good morning', 'Good evenig', 'What\'
 greetings_outputs = ['Hi, I am Vivabot. How can I assist you?', 'Hello! How may I help you?', 'Hey there! How can I assist you today?', 'Hey! What can I do for you?']
 
 
-def greetings(sentence, greetings_inputs, greetings_outputs):
+def greetings(sentences, greetings_inputs, greetings_outputs):
     if sentence.lower() in [x.lower() for x in greetings_inputs]:
         output = random.choice(greetings_outputs)
         return output
