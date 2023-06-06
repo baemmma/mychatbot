@@ -3,8 +3,6 @@ import numpy as np
 import string
 import random
 
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 import nltk
 from nltk.tokenize import word_tokenize
