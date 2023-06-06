@@ -36,20 +36,38 @@ colored_header(label='', description='', color_name='blue-30')
 response_container = st.container()
 
 # User input
-## Function for taking user provided prompt as input
-def get_text():
-    input_text = st.text_input("You: ", "", key="input")
-    return input_text
-## Applying the user input box
-with input_container:
-    user_input = get_text()
+def greetings(sentence, greetings_inputs, greetings_outputs):
+    if sentence.lower() in [x.lower() for x in greetings_inputs]:
+        output = random.choice(greetings_outputs)
+        return output
+    else:
+        return None
 
-# Response output
-## Function for taking user prompt as input followed by producing AI generated responses
-def generate_response(prompt):
-    chatbot = hugchat.ChatBot()
-    response = chatbot.chat(prompt)
-    return response
+def get_closest_sentence(query, tf_idf, vectorizer, database):
+    query_tf_idf = vectorizer.transform([query])
+    similarity = cosine_similarity(query_tf_idf, tf_idf)
+    closest_sentence_index = np.argmax(similarity)
+    return database[closest_sentence_index]
+
+def vivabot(greetings_inputs, greetings_outputs, tf_idf, vectorizer, database):
+    print("Welcome to Vivabot!")
+    print("How can I assist you today?")
+    
+    while True:
+        user_input = input("User input: ")
+        
+        if user_input.lower() == "bye":
+            print("Goodbye! Have a great day!")
+            break
+        
+        greetings_output = greetings(user_input, greetings_inputs, greetings_outputs)
+        
+        if greetings_output:
+            print(greetings_output)
+        else:
+            closest_sentence = get_closest_sentence(user_input, tf_idf, vectorizer, database)
+            print(closest_sentence)
+
 
 ## Conditional display of AI generated responses as a function of user provided prompts
 with response_container:
