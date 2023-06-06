@@ -1,3 +1,23 @@
+import pandas as pd
+import numpy as np
+import string
+import random
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize
+from nltk.stem import WordNetLemmatizer
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from nltk.tokenize import sent_tokenize
+
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+
 import streamlit as st
 from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
@@ -37,7 +57,7 @@ response_container = st.container()
 
 with open("chatbot_database.txt", "r") as file:
     chatbot_db = file.read()
-    
+sentences = nltk.sent_tokenize(chatbot_db)    
 sentences = nltk.sent_tokenize(chatbot_db) 
 from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer()
